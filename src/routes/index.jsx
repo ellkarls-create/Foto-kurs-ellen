@@ -6,10 +6,5 @@ export const Route = createFileRoute('/')({
 })
 
 function Home() {
-  return (
-    <>
-      <h1>Fotoworkshopen</h1>
-      <WorkshopCard />
-    </>
-  )
+  return <WorkshopCard />
 }

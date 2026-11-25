@@ -2,15 +2,20 @@
 
 /* Samma värden används på webbsidan och i Storybook. */
 :root {
-  --color-page: #f4f3ed;
+  --color-page: #ffffff;
   --color-surface: #ffffff;
-  --color-text: #222c28;
-  --color-accent: #285d4c;
-  --color-line: #b7c0b9;
+  --color-text: #21264d;
+  --color-accent: #3f4fc6;
+  --color-line: #dfe1f0;
+  --color-info-surface: #dfe1f0;
+  --color-brand-navy: #21264d;
+  --color-brand-pink: #db9dd1;
+  --color-muted: #c9d0ff;
   --text-body: 1rem;
   --text-heading: clamp(2rem, 6vw, 3.5rem);
   --text-card-title: 1.5rem;
   --space-card: clamp(1rem, 4vw, 2rem);
+  scrollbar-gutter: stable;
   font-family: 'DM Sans Variable', system-ui, sans-serif;
   color: var(--color-text);
   background: var(--color-page);
@@ -20,11 +25,74 @@
 
 * { box-sizing: border-box; }
 body { margin: 0; font-size: var(--text-body); }
-.site { width: min(100% - 2rem, 58rem); margin: 0 auto; }
-nav { display: flex; gap: 1.5rem; border-bottom: 1px solid var(--color-line); }
-nav a { padding: 1rem 0; color: var(--color-accent); text-underline-offset: 0.25em; }
-nav [aria-current="page"] { font-weight: 700; }
-main { padding-block: 2.5rem; }
+.site { display: flex; min-height: 100vh; flex-direction: column; }
+.site-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 139px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px 24px;
+  background: var(--color-brand-navy);
+}
+.site-logo {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-brand-pink);
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.81;
+  text-decoration: none;
+}
+.menu-toggle {
+  display: flex;
+  width: 50.446px;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 5px;
+  background: var(--color-brand-pink);
+}
+.site-menu {
+  position: absolute;
+  top: 100%;
+  right: 24px;
+  display: flex;
+  width: min(280px, calc(100vw - 48px));
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-brand-navy);
+}
+.site-menu[hidden] { display: none; }
+.site-menu a { color: var(--color-brand-pink); text-underline-offset: 0.25em; }
+.site-main { flex: 1; }
+.site-footer {
+  display: flex;
+  min-height: 120px;
+  align-items: center;
+  padding: 24px 19px;
+  background: var(--color-brand-navy);
+  color: var(--color-muted);
+}
+.site-footer p { display: flex; flex-direction: column; margin: 0; font-size: 1rem; line-height: 1; }
+.site-footer a { color: inherit; text-decoration: none; }
+.site--booking .site-footer { min-height: 86px; }
 h1 { font-size: var(--text-heading); line-height: 1.1; margin: 0 0 1.5rem; }
 h2 { font-size: var(--text-card-title); line-height: 1.25; margin: 0 0 0.75rem; }
 :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+
+@media (min-width: 768px) {
+  .site-header { padding-inline: 54px; }
+  .site-menu { right: 54px; }
+  .site--booking .site-footer { min-height: 120px; }
+}

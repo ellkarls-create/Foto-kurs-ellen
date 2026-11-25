@@ -1,22 +1,249 @@
 .workshop-card {
-  max-width: 36rem;
-  padding: var(--space-card);
   background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  border-radius: 0.75rem;
   overflow-wrap: anywhere;
 }
 
-.workshop-date {
-  margin: 0 0 0.6rem;
-  color: var(--color-accent);
+.workshop-visual {
+  height: 207px;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
 }
 
-.workshop-card summary {
-  color: var(--color-accent);
-  cursor: pointer;
-  padding-block: 0.65rem;
+.workshop-visual::after {
+  position: absolute;
+  inset: 0;
+  background: rgba(69, 110, 192, 0.49);
+  content: '';
+}
+
+.workshop-visual__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.31;
+}
+
+.workshop-visual__divider {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: -11.55px;
+  width: 43px;
+  height: 23.094px;
+  transform: translateX(-50%);
+}
+
+.workshop-main {
+  padding: 11px 28px 0;
+}
+
+.workshop-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  max-width: 850px;
+  margin-inline: auto;
+  padding: 25px 10px;
+}
+
+.workshop-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.workshop-title {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  padding-block: 5px;
+}
+
+.workshop-kicker {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+  line-height: 18px;
+}
+
+.workshop-title h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.workshop-description {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.booking-section {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  min-height: 136px;
+  margin-inline: auto;
+}
+
+.booking-copy,
+.booking-facts {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.booking-copy {
+  display: grid;
+  gap: 10px;
+}
+
+.booking-copy h2,
+.booking-copy p,
+.booking-facts p {
+  margin: 0;
+}
+
+.booking-copy h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.booking-copy p,
+.booking-copy a {
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.booking-copy a {
   width: fit-content;
+  color: var(--color-accent);
+  font-weight: 600;
+  text-underline-offset: 0.15em;
+  white-space: nowrap;
 }
 
-.workshop-card details p { margin: 0.25rem 0 0; }
+.booking-facts {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.booking-facts img {
+  flex: 0 0 49px;
+  width: 49px;
+  height: 49px;
+}
+
+.booking-facts p {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.workshop-information {
+  width: 100%;
+  margin-inline: auto;
+  padding-block: 12px;
+}
+
+.workshop-information h2 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+}
+
+.workshop-accordions {
+  display: grid;
+  gap: 13px;
+}
+
+.workshop-accordion {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 7px;
+  background: var(--color-info-surface);
+}
+
+.workshop-accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 45px;
+  padding-inline: 23px;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  list-style: none;
+}
+
+.workshop-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.workshop-accordion summary::marker {
+  content: '';
+}
+
+.workshop-accordion summary:focus-visible {
+  outline-offset: -3px;
+}
+
+.workshop-accordion summary img {
+  flex: 0 0 auto;
+  transition: transform 160ms ease;
+  transform: rotate(180deg);
+}
+
+.workshop-accordion[open] summary img {
+  transform: rotate(0);
+}
+
+.workshop-accordion > p {
+  margin: 0;
+  padding: 0 23px 15px;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+@media (max-width: 359px) {
+  .booking-section {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .booking-copy,
+  .booking-facts {
+    flex-basis: 100%;
+  }
+
+  .booking-facts {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 768px) {
+  .workshop-inner {
+    padding-block: 10px;
+  }
+
+  .workshop-information {
+    padding-block: 25px;
+  }
+}

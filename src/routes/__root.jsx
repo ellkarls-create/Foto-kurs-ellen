@@ -1,4 +1,5 @@
-import { createRootRoute, HeadContent, Link, Outlet } from '@tanstack/react-router'
+import { useState } from 'react'
+import { createRootRoute, HeadContent, Link, Outlet, useRouterState } from '@tanstack/react-router'
 
 export const Route = createRootRoute({
   component: Layout,
@@ -7,14 +8,43 @@ export const Route = createRootRoute({
 })
 
 function Layout() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const isBookingPage = useRouterState({
+    select: (state) => state.location.pathname.startsWith('/booking'),
+  })
+
   return (
-    <div className="site">
+    <div className={isBookingPage ? 'site site--booking' : 'site'}>
       <HeadContent />
-      <nav aria-label="Huvudmeny">
-        <Link to="/" activeOptions={{ exact: true }}>Hem</Link>
-        <Link to="/admin">Admin</Link>
-      </nav>
-      <main><Outlet /></main>
+      <header className="site-header">
+        <Link className="site-logo" to="/" aria-label="Ljusrummet – startsida">
+          <span>LJUS</span>
+          <span>RUMMET</span>
+        </Link>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={menuOpen ? 'Stäng menyn' : 'Öppna menyn'}
+          aria-expanded={menuOpen}
+          aria-controls="site-menu"
+          onClick={() => setMenuOpen((isOpen) => !isOpen)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav className="site-menu" id="site-menu" aria-label="Huvudmeny" hidden={!menuOpen}>
+          <Link to="/booking" onClick={() => setMenuOpen(false)}>Boka kurs</Link>
+          <Link to="/" onClick={() => setMenuOpen(false)}>Till startsidan</Link>
+        </nav>
+      </header>
+      <main className="site-main"><Outlet /></main>
+      <footer className="site-footer">
+        <p>
+          <span>Vid frågor kontakta:</span>
+          <a href="tel:+460121231212">+46(0) 12 123 12 12</a>
+        </p>
+      </footer>
     </div>
   )
 }
