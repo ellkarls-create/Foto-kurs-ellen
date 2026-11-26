@@ -41,6 +41,7 @@ function Layout() {
       <main className="site-main"><Outlet /></main>
       <footer className="site-footer">
         <p>
+          <Link className="site-footer__organizer-link" to="/admin">Logga in som arrangör</Link>
           <span>Vid frågor kontakta:</span>
           <a href="tel:+460121231212">+46(0) 12 123 12 12</a>
         </p>
